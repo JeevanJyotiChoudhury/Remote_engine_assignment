@@ -145,7 +145,7 @@ const Devonboarding = () => {
       );
       setSubmitted(true);
       toast({
-        title: "Onboarding details submitted successfully!",
+        title: "Onboarding details submitted successfully! Check console for the details.",
         status: "success",
         duration: 3000,
         isClosable: true,
@@ -171,8 +171,19 @@ const Devonboarding = () => {
 
   if (submitted) {
     return (
-      <div>
-        Onboarding details submitted successfully! Check console for the details.
+      <div
+        style={{
+          padding: "20px",
+          backgroundColor: "#4CAF50",
+          color: "white",
+          borderRadius: "5px",
+          textAlign: "center",
+          margin: "20px auto",
+          width: "300px",
+        }}
+      >
+        Onboarding details submitted successfully! Check console for the
+        details.
       </div>
     );
   }
