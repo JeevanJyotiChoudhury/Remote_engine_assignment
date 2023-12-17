@@ -36,7 +36,6 @@ const Devonboarding = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    // Fetch skills from the server
     const fetchSkills = async () => {
       try {
         const response = await axios.get(
@@ -154,8 +153,7 @@ const Devonboarding = () => {
       console.log(response.data);
     } catch (error) {
       console.error(
-        "Error submitting onboarding details:",
-        error.response.data
+        "Error submitting onboarding details:"
       );
       toast({
         title: "Error submitting onboarding details",
@@ -172,7 +170,11 @@ const Devonboarding = () => {
   }
 
   if (submitted) {
-    return <div>Onboarding details submitted successfully!</div>;
+    return (
+      <div>
+        Onboarding details submitted successfully! Check console for the details.
+      </div>
+    );
   }
 
   return (
@@ -222,7 +224,7 @@ const Devonboarding = () => {
             <Select
               value={formData.skills}
               onChange={handleSkillsChange}
-              size={skills.length} 
+              size={skills.length}
             >
               {skills.map((skill) => (
                 <option key={skill._id} value={skill.name}>
@@ -260,20 +262,41 @@ const Devonboarding = () => {
                   <FormControl>
                     <FormLabel>Skills Used</FormLabel>
                     <Select
-                      options={skills}
                       isMulti
                       value={exp.skillsUsed}
                       onChange={(selectedSkills) => {
+                        console.log(
+                          "Selected Skills:",
+                          selectedSkills.target.value
+                        );
                         setFormData((prevData) => {
                           const professionalExperiences = [
                             ...prevData.professionalExperiences,
                           ];
                           professionalExperiences[index].skillsUsed =
-                            selectedSkills.map((skill) => skill._id);
+                            Array.from(
+                              selectedSkills.target.selectedOptions
+                            ).map((option) => {
+                              const selectedSkill = skills.find(
+                                (skill) => skill._id === option.value
+                              );
+                              return {
+                                _id: option.value,
+                                name: selectedSkill
+                                  ? selectedSkill.name
+                                  : "Unknown Skill",
+                              };
+                            });
                           return { ...prevData, professionalExperiences };
                         });
                       }}
-                    />
+                    >
+                      {skills.map((skill) => (
+                        <option key={skill._id} value={skill._id}>
+                          {skill.name}
+                        </option>
+                      ))}
+                    </Select>
                   </FormControl>
                   <FormControl>
                     <FormLabel>Time Period</FormLabel>
