@@ -39,7 +39,9 @@ const Devonboarding = () => {
     // Fetch skills from the server
     const fetchSkills = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/skills");
+        const response = await axios.get(
+          "https://odd-rose-crocodile-toga.cyclic.app/skills"
+        );
         console.log(response.data);
         setSkills(response.data);
         setLoading(false);
@@ -134,7 +136,7 @@ const Devonboarding = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:8080/developer/onboarding",
+        "https://odd-rose-crocodile-toga.cyclic.app/developer/onboarding",
         formData,
         {
           headers: {
