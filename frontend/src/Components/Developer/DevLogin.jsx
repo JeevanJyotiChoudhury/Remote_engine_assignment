@@ -27,7 +27,7 @@ const DevLogin = () => {
         password,
       });
       if (response.data.token) {
-        console.log(response, "response");
+        localStorage.setItem("token", response.data.token);
         toast({
           title: "Login successful",
           status: "success",
@@ -35,7 +35,7 @@ const DevLogin = () => {
           isClosable: true,
           position: "top-right",
         });
-        navigate("/onboard")
+        navigate("/onboard", { state: { email } });
       } else {
         toast({
           title: "Login failed",

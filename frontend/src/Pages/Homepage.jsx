@@ -5,20 +5,22 @@ import { useNavigate } from "react-router-dom";
 const Homepage = () => {
   const navigate = useNavigate();
   return (
-    <Flex>
-      <Box w="50%">
-        <Image src="https://bit.ly/dan-abramov" width="100%" />
-      </Box>
-      <Box>
-        <Heading>Want to login as...</Heading>
+    <Box>
+      {" "}
+      <Heading>Want to login as...</Heading>
+      <Flex w="40%" mx="auto" justifyContent="space-between" mt="50px">
         <Box>
-          <Button colorScheme='facebook' onClick={()=>navigate("/developer")}>Developer</Button>
+          <Button colorScheme="facebook" onClick={() => navigate("/developer")}>
+            Developer
+          </Button>
         </Box>
         <Box>
-          <Button colorScheme='facebook' onClick={()=>navigate("/client")}>Client</Button>
+          <Button colorScheme="facebook" onClick={() => navigate("/client")}>
+            Client
+          </Button>
         </Box>
-      </Box>
-    </Flex>
+      </Flex>
+    </Box>
   );
 };
 
