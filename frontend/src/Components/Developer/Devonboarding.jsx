@@ -41,7 +41,6 @@ const Devonboarding = () => {
         const response = await axios.get(
           "https://odd-rose-crocodile-toga.cyclic.app/skills"
         );
-        console.log(response.data);
         setSkills(response.data);
         setLoading(false);
       } catch (error) {
